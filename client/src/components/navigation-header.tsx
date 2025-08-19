@@ -23,7 +23,7 @@ export default function NavigationHeader() {
             <Link href="/">
               <button
                 className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                  isActive("/") && !location.includes("/dashboard") && !location.includes("/qr")
+                  isActive("/") && !location.includes("/dashboard") && !location.includes("/qr") && !location.includes("/waiter")
                     ? "bg-primary text-white"
                     : "text-gray-600 hover:text-gray-900"
                 }`}
@@ -54,6 +54,18 @@ export default function NavigationHeader() {
                 data-testid="button-qr-view"
               >
                 QR Generator
+              </button>
+            </Link>
+            <Link href="/waiter">
+              <button
+                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                  isActive("/waiter")
+                    ? "bg-primary text-white"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+                data-testid="button-waiter-view"
+              >
+                Waiter
               </button>
             </Link>
           </div>
