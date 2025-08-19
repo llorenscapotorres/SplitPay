@@ -51,7 +51,7 @@ export class MemStorage implements IStorage {
     const table: Table = {
       id: tableId,
       number: 7,
-      restaurantName: "Bella Vista Restaurant",
+      restaurantName: "bella-vista",
       qrCode: "https://splitbill.app/t/7/bella-vista",
       isActive: true,
       createdAt: new Date(),
@@ -102,7 +102,7 @@ export class MemStorage implements IStorage {
       const sampleTable: Table = {
         id: tId,
         number: i,
-        restaurantName: "Bella Vista Restaurant",
+        restaurantName: "bella-vista",
         qrCode: `https://splitbill.app/t/${i}/bella-vista`,
         isActive: true,
         createdAt: new Date(),
@@ -155,6 +155,7 @@ export class MemStorage implements IStorage {
       ...insertTable,
       id,
       createdAt: new Date(),
+      isActive: insertTable.isActive ?? true,
     };
     this.tables.set(id, table);
     return table;
@@ -189,6 +190,10 @@ export class MemStorage implements IStorage {
       ...insertBill,
       id,
       startTime: new Date(),
+      status: insertBill.status || "unpaid",
+      paid: insertBill.paid || "0",
+      guestCount: insertBill.guestCount || 1,
+      isActive: insertBill.isActive ?? true,
     };
     this.bills.set(id, bill);
     return bill;
@@ -231,6 +236,8 @@ export class MemStorage implements IStorage {
     const item: BillItem = {
       ...insertItem,
       id,
+      quantity: insertItem.quantity || "1",
+      paidQuantity: insertItem.paidQuantity || "0",
     };
     this.billItems.set(id, item);
     return item;
@@ -259,6 +266,9 @@ export class MemStorage implements IStorage {
       ...insertPayment,
       id,
       processedAt: new Date(),
+      status: insertPayment.status || "completed",
+      tip: insertPayment.tip || "0",
+      paymentMethod: insertPayment.paymentMethod || "card",
     };
     this.payments.set(id, payment);
     return payment;
@@ -271,7 +281,7 @@ export class MemStorage implements IStorage {
   async getDashboardTables(): Promise<DashboardTable[]> {
     const dashboardTables: DashboardTable[] = [];
     
-    for (const table of this.tables.values()) {
+    for (const table of Array.from(this.tables.values())) {
       const bill = Array.from(this.bills.values()).find(b => b.tableId === table.id && b.isActive);
       const items = bill ? Array.from(this.billItems.values()).filter(item => item.billId === bill.id) : [];
       

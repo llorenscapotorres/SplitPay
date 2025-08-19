@@ -8,7 +8,7 @@ interface BillStatusCardProps {
 
 export default function BillStatusCard({ bill }: BillStatusCardProps) {
   const total = parseFloat(bill.total);
-  const paid = parseFloat(bill.paid);
+  const paid = parseFloat(bill.paid || "0");
   const remaining = parseFloat(bill.remaining);
   const progress = total > 0 ? (paid / total) * 100 : 0;
 

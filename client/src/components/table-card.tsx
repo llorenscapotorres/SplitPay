@@ -25,7 +25,7 @@ export default function TableCard({ table }: TableCardProps) {
   }
 
   const total = parseFloat(table.bill.total);
-  const paid = parseFloat(table.bill.paid);
+  const paid = parseFloat(table.bill.paid || "0");
   const remaining = parseFloat(table.bill.remaining);
   const progress = total > 0 ? (paid / total) * 100 : 0;
 

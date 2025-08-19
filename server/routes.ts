@@ -129,7 +129,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const bill = await storage.getBill(validatedData.billId);
       if (bill) {
         const totalAmount = parseFloat(validatedData.amount) + parseFloat(validatedData.tip || "0");
-        const newPaid = parseFloat(bill.paid) + totalAmount;
+        const newPaid = parseFloat(bill.paid || "0") + totalAmount;
         const newRemaining = parseFloat(bill.total) - newPaid;
         
         let status = "unpaid";
@@ -150,7 +150,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           for (const itemPayment of validatedData.items as any[]) {
             const billItem = await storage.getBillItem(itemPayment.itemId);
             if (billItem) {
-              const newPaidQty = parseFloat(billItem.paidQuantity) + parseFloat(itemPayment.quantity);
+              const newPaidQty = parseFloat(billItem.paidQuantity || "0") + parseFloat(itemPayment.quantity);
               await storage.updateBillItem(itemPayment.itemId, {
                 paidQuantity: newPaidQty.toFixed(2),
               });

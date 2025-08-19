@@ -52,7 +52,7 @@ export default function Bill() {
 
   const handleItemToggle = (item: BillItem, isSelected: boolean) => {
     if (isSelected) {
-      const remainingQuantity = parseFloat(item.quantity) - parseFloat(item.paidQuantity);
+      const remainingQuantity = parseFloat(item.quantity) - parseFloat(item.paidQuantity || "0");
       setSelectedItems(prev => [
         ...prev,
         {

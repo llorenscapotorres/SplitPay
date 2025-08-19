@@ -7,7 +7,7 @@ export function generateQRCodeURL(tableNumber: number, restaurantName: string): 
   
   // In a real implementation, this would use environment variables
   // For demo purposes, we'll use a placeholder domain
-  const baseUrl = process.env.VITE_APP_URL || 'https://splitbill.app';
+  const baseUrl = import.meta.env.VITE_APP_URL || 'https://splitbill.app';
   
   return `${baseUrl}/bill/${tableNumber}/${restaurantSlug}`;
 }

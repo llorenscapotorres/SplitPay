@@ -13,7 +13,7 @@ import type { Table } from "@shared/schema";
 
 export default function QRGenerator() {
   const [tableNumber, setTableNumber] = useState("7");
-  const [restaurantName, setRestaurantName] = useState("Bella Vista Restaurant");
+  const [restaurantName, setRestaurantName] = useState("bella-vista");
   const [generatedTable, setGeneratedTable] = useState<Table | null>(null);
   
   const { toast } = useToast();
@@ -25,10 +25,10 @@ export default function QRGenerator() {
 
   const createTableMutation = useMutation({
     mutationFn: async (tableData: { number: number; restaurantName: string; qrCode: string; isActive: boolean }) => {
-      return apiRequest("POST", "/api/tables", tableData);
+      const response = await apiRequest("POST", "/api/tables", tableData);
+      return response.json();
     },
-    onSuccess: (response) => {
-      const table = response.json();
+    onSuccess: (table) => {
       setGeneratedTable(table);
       queryClient.invalidateQueries({ queryKey: ["/api/tables"] });
       toast({

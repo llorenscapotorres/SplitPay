@@ -33,7 +33,7 @@ export default function BillItemsList({
   };
 
   const getRemainingQuantity = (item: BillItem) => {
-    return parseFloat(item.quantity) - parseFloat(item.paidQuantity);
+    return parseFloat(item.quantity) - parseFloat(item.paidQuantity || "0");
   };
 
   return (
@@ -79,7 +79,7 @@ export default function BillItemsList({
                         </h4>
                         <p className="text-sm text-gray-600">
                           Qty: {item.quantity}
-                          {parseFloat(item.paidQuantity) > 0 && (
+                          {parseFloat(item.paidQuantity || "0") > 0 && (
                             <span className="text-secondary ml-1">
                               (Paid: {item.paidQuantity})
                             </span>
