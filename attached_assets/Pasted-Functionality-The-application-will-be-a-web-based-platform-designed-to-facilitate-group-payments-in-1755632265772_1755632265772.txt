@@ -1,0 +1,58 @@
+Functionality
+The application will be a web-based platform designed to facilitate group payments in a restaurant setting. It will not require any installation. The core functionality is to link a physical QR code to a live bill and enable diners to make fractional payments in real-time.
+
+QR Code to Bill Mapping: A unique, static QR code is assigned to each table. When a new order is started for that table, a new bill is created in the system and automatically linked to that table's QR code.
+
+Real-Time Bill Synchronization: The web application displays a live version of the table’s bill. As a waiter adds new items to the order, the bill updates on the web app.
+
+Individual Item Selection & Fractional Payments: Users can select specific items they want to pay for. They can also manually adjust the quantity to pay for a fraction of an item (e.g., a fraction of a shared bottle of wine or appetizer).
+
+Integrated Payment Gateway: The application integrates with a secure payment provider (like Stripe or PayPal) to process card payments.
+
+Real-Time Bill Status Tracking: The restaurant's back-end system receives instant updates as each payment is made, showing the current total paid and the remaining balance.
+
+Features
+This MVP will be a lightweight web application with the following key features:
+
+Unique Table QR Code: A single QR code for a table, printed on a small card or the final bill, that serves as the entry point to the bill.
+
+Mobile-First Bill View: A clean, easy-to-read web page designed for mobile devices. It will show a list of all items, quantities, and prices for the table’s bill.
+
+Interactive Item Selection: Users can tap on individual items to select them for payment. A clear subtotal will be calculated as items are selected.
+
+Tip Customization: An optional step in the checkout flow where users can add a tip, either as a percentage or a custom amount.
+
+Secure Checkout Interface: A simple, secure form to enter credit card details.
+
+Restaurant Dashboard: A dedicated view for the restaurant staff (on a tablet or a computer) that shows the status of each table’s bill. It should clearly display the current total, the amount paid, and the outstanding balance.
+
+User Flow
+This outlines the step-by-step process for both the restaurant staff and the diners.
+
+Step 1: Bill Initiation
+
+The waiter takes the order and enters it into the restaurant's POS system.
+
+The system generates a QR code for the bill and the waiter places it on the table.
+
+Step 2: Diner Interaction
+
+A diner scans the QR code with their mobile device.
+
+The web application loads, displaying the current bill for their table.
+
+The diner selects the items they want to pay for and, if desired, adds a tip.
+
+The diner proceeds to the secure checkout, enters their card details, and completes the payment.
+
+Step 3: Real-Time Update
+
+The payment is processed and the restaurant's dashboard updates instantly, showing the amount that has just been paid and the new outstanding balance.
+
+Step 4: Final Check & Intervention
+
+The diners can have each person scan the QR code individually. They continue this process until the full bill is paid.
+
+Once the bill is paid in full, the restaurant dashboard shows "100% Paid" and the waiter knows the table is settled.
+
+If the diners begin to leave and the bill is not fully paid, the waiter is alerted by the dashboard and can approach the table to assist them in completing the payment.
